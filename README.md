@@ -15,6 +15,6 @@ Stack used to develope this SPA app:
 
 # Backend - AWS  
 * DynamoDb  
-* AWS Lamnda functions 
+* AWS Lambda functions 
 * API Gateway 
 
