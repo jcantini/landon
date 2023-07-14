@@ -1,7 +1,24 @@
-import accessibility from './data/accessibility.json';
-import services from './data/services.json'
+import { useEffect, useState } from 'react';
+import { getApiData } from './data/getApiData';
+// import accessibility from './data/accessibilities.json';
+// import services from './data/services.json'
 
 export const HotelInfo = () => {
+  const [ accessibility, setAccessibility ] = useState([]);
+  const [ services, setServices ] = useState([]);
+
+  const loadData = async () => {
+    const data1 = await getApiData( 'accessibilities')
+    setAccessibility(data1);
+    const data2 = await getApiData( 'services')
+    setServices(data2);
+}
+
+useEffect(() => { //(2) 
+    // Load the menu links data from the API Gateway
+    loadData();
+}, []);
+
   return (
     <div className="scene" id="hotelinfo">
       <article className="heading">
@@ -25,7 +42,7 @@ export const HotelInfo = () => {
           <ul>
             {
                 services.map( service => (
-                        <li>{ service.serv }</li>        
+                        <li key={ service.name } >{ service.name }</li>        
                      ))
             }
           </ul>
@@ -36,7 +53,7 @@ export const HotelInfo = () => {
           <ul>
           {
                 accessibility.map( access => (
-                        <li>{ access.acc }</li>        
+                        <li key= { access.name } >{ access.name }</li>        
                      ))
             }
           </ul>

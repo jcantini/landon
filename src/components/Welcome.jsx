@@ -1,14 +1,28 @@
-import gallery from './data/galery.json';
+import { useEffect, useState } from 'react';
+import { getApiData } from './data/getApiData';
+//import galleryData from '../components/data/gallery_images.json'
 
 export const Welcome = () => {
+  const [ galleryData, setGalleryData] = useState([]); //(1)
+
+  const loadData = async () => {
+    const data = await getApiData( 'gallery_images')
+    setGalleryData(data);
+}
+
+useEffect(() => { //(2) 
+    // Load the menu links data from the API Gateway
+    loadData();
+}, []);
+
   return (
     <div className="scene" id="welcome">
         <article className="content">
         <div className="gallery">
         {
-           gallery.map( image => (
-            <img  className={ image.className } src={ image.src } alt={ image.alt } />      
-                     ))
+           galleryData.map( image => (
+            <img  key={ image.alt } className={ image.className } src={ image.src } alt={ image.alt } />      
+           ))
         }
         </div>
         <h1>Welcome to the Landon&nbsp;Hotel</h1>

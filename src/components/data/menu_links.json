@@ -5,7 +5,7 @@
         "text" : "info"
     },
     {
-        "class": "roomo",
+        "class": "rooms",
         "href" : "#rooms",
         "text" : "rooms"
     },
